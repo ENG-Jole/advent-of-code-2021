@@ -1,17 +1,18 @@
 # Adopted from https://github.com/cclauss/autoblack
 
 name: autoblack
-on: [push]
-  branches: [main]
+on:
+  push:
+    branches: [main]
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Set up Python 3.7
+      - name: Set up Python 3.10
         uses: actions/setup-python@v1
         with:
-          python-version: 3.7
+          python-version: 3.10
       - name: Install Black
         run: pip install black
       - name: Run black --check .
