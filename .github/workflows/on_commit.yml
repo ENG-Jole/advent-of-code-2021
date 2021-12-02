@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - uses: actions/checkout@v1
       - name: Black-ify Code
         uses: jpetrucciani/black-check@master
       - name: Commit back to main
