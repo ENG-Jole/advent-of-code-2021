@@ -16,8 +16,7 @@ TEST_INPUT = [
     "10000",
     "11001",
     "00010",
-    "01010",
-]
+    "01010",]
 SESSION_ID = os.environ["AOC_2021_SESSION"]
 URL = "https://adventofcode.com/2021/day/3/input"
 
