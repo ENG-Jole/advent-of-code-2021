@@ -5,23 +5,23 @@ on:
   push:
     branches: [main]
 jobs:
-  build:
+  autoblack:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v1
+      - name: "black_check"
+        uses: rickstaa/action-black@v1
         with:
-          python-version: "3.10"
-      - name: Install Black
-        run: pip install black
-      - name: Run black --check .
-        run: black --check .
-      - name: If needed, commit black changes to the pull request
-        continue-on-error: true
-        if: failure()
+          black_args: ". --check"
+          fail_on_error: false
+      - uses: rickstaa/action-black@v1
+        if: steps.black_check.outputs.is_formatted == 'true'
+        with:
+          black_args: "."
+          fail_on_error: true 
+      - name: If needed, commit black changes
+        if: steps.black_check.outputs.is_formatted == 'true'
         run: |
-          black .
           git config --global user.name 'autoblack'
           git config --global user.email 'eng-jole@users.noreply.github.com'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/$GITHUB_REPOSITORY

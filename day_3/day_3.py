@@ -23,8 +23,7 @@ URL = "https://adventofcode.com/2021/day/3/input"
 
 
 def get_input_data(url: str) -> list[str]:
-    return [
-        item
+    return [item
         for item in requests.get(url, cookies={"session": SESSION_ID}).text.split("\n")
         if item != ""
     ]
