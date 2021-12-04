@@ -73,7 +73,15 @@ def get_most_and_least_oneliner(raw_input: list[str]) -> tuple[int, int]:
         2,
     )
 
-    least_common = int("".join([str(anti_bin_mode([int(elem[key]) for elem in raw_input])) for key in range(len(raw_input[0]))]),2,)
+    least_common = int(
+        "".join(
+            [
+                str(anti_bin_mode([int(elem[key]) for elem in raw_input]))
+                for key in range(len(raw_input[0]))
+            ]
+        ),
+        2,
+    )
 
     return most_common, least_common
 
