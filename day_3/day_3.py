@@ -1,7 +1,7 @@
 import requests
 import os
-import copy
-from statistics import mode, multimode
+
+from statistics import multimode
 
 
 TEST_INPUT = [
@@ -52,7 +52,7 @@ def get_most_common_and_least(byte_list: list[list[int]]) -> tuple[int, int]:
     least_common = []
 
     for elem in byte_list:
-        most_common.append(mode(elem))
+        most_common.append(max(multimode(elem)))
 
     for elem in byte_list:
         least_common.append(anti_bin_mode(elem))
