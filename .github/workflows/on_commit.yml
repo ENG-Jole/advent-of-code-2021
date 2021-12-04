@@ -16,9 +16,10 @@ jobs:
       - name: Install Black
         run: pip install black
       - name: run_black_check
+        continue_on_error: true
         run: black --check .
       - name: If needed, commit black changes to the pull request
-        if: steps.run_black_check.outcome == 'failure'
+        if: ${{ steps.run_black_check.outcome == 'failure' }}
         run: |
           black .
           git config --global user.name 'autoblack'
