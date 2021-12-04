@@ -18,6 +18,7 @@ jobs:
       - name: Run black --check .
         run: black --check .
       - name: If needed, commit black changes to the pull request
+        continue-on-error: true
         if: failure()
         run: |
           black .
