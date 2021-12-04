@@ -15,7 +15,8 @@ jobs:
           python-version: "3.10"
       - name: Install Black
         run: pip install black
-      - name: run_black_check
+      - name: Run black --check
+        id: run_black_check
         continue-on-error: true
         run: black --check .
       - name: If needed, commit black changes to the pull request
